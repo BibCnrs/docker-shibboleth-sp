@@ -6,7 +6,7 @@ RUN apt-get update \
   && apt-get -y install apache2 libapache2-mod-shib2 \
   && apt-get clean
 
-RUN a2enmod ssl shib2
+RUN a2enmod ssl shib2 proxy_http
 RUN a2dissite 000-default
 RUN a2ensite default-ssl
 
