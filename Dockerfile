@@ -7,6 +7,8 @@ RUN apt-get update \
   && apt-get clean
 
 RUN a2enmod shib2
+RUN a2dissite default-ssl
+RUN a2ensite 000-default
 
 # generate ssl keys to be able to start the shibd service
 # but these keys have to be replaced by officials ones at
@@ -16,6 +18,10 @@ RUN cd /etc/shibboleth/ && shib-keygen
 # redirect logs to stdout
 RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log
 RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log
+RUN ln -sf /proc/self/fd/1 /var/log/shibboleth/shibd.log
+RUN ln -sf /proc/self/fd/1 /var/log/shibboleth/shibd_warn.log
+RUN ln -sf /proc/self/fd/1 /var/log/shibboleth/signature.log
+RUN ln -sf /proc/self/fd/1 /var/log/shibboleth/transaction.log
 
 COPY ./httpd-foreground /usr/local/bin/
 CMD [ "httpd-foreground" ]
