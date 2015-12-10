@@ -13,8 +13,11 @@ RUN a2enmod shib2
 # configuration step
 RUN cd /etc/shibboleth/ && shib-keygen
 
+# redirect logs to stdout
+RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log
+RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log
+
 COPY ./httpd-foreground /usr/local/bin/
+CMD [ "httpd-foreground" ]
 
 EXPOSE 80
-
-CMD ["httpd-foreground"]
