@@ -2,13 +2,12 @@
 
 A docker image for a generic shibboleth service provider based on an apache web server.
 
-Image docker chargée de mettre à disposition un serveur web apache2 et un démon shibboleth pour un service provider (sp).
-
-Pour construire l'image :
+To build the docker image:
 ```bash
 make build
 ```
 
-L'alias de l'image aura alors comme nom : ``docker-shibboleth-sp``
+The image short-name will be: ``docker-shibboleth-sp``
 
-L'image peut ensuite être utilisée en lui passant des paramètres cf exemple dans BibRP/docker-compose.yml
+To use the image:
+See example in [BibRP/docker-compose.yml](https://github.com/BibCnrs/BibRP/blob/master/docker-compose.yml)
