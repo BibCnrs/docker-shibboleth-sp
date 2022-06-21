@@ -1,9 +1,7 @@
-FROM debian:buster
-
-MAINTAINER BibCNRS <bibcnrs@inist.fr>
+FROM debian:bullseye
 
 RUN apt-get update \
-  && apt-get -y install apache2=2.4.38-3+deb10u3 libapache2-mod-shib2=3.0.4+dfsg1-1 \
+  && apt-get -y install apache2=2.4.53-1~deb11u1 libapache2-mod-shib=3.2.2+dfsg1-1 \
   && apt-get clean
 
 RUN a2enmod ssl shib proxy_http
